@@ -1,0 +1,210 @@
+{% load static %}
+{% block content %}
+<section class="mil-dark-bg">
+    <div class="mi-invert-fix">
+        <div class="mil-animation-frame">
+            <div class="mil-animation mil-position-1 mil-scale" data-value-1="2.4" data-value-2="1.4"></div>
+            <div class="mil-animation mil-position-2 mil-scale" data-value-1="2" data-value-2="1"></div>
+        </div>
+        <div class="container mil-p-120-30">
+            <div class="row justify-content-center align-items-center eeg-interactive-section" style="gap: 2rem;">
+                <div class="col-lg-5 col-xl-5">
+
+                    <!-- Orange Portal Effect -->
+                    <div class="eeg-portal-container mil-up" style="position: relative; height: 400px; display: flex; align-items: center; justify-content: center;">
+                        <div class="eeg-portal-visual">
+                            <!-- Outer rotating ring -->
+                            <div class="eeg-orbit-ring eeg-orbit-1">
+                                <div class="eeg-orbit-dot"></div>
+                                <div class="eeg-orbit-dot" style="transform: rotate(120deg) translateX(200px) rotate(-120deg);"></div>
+                                <div class="eeg-orbit-dot" style="transform: rotate(240deg) translateX(200px) rotate(-240deg);"></div>
+                            </div>
+                            <!-- Middle rotating ring -->
+                            <div class="eeg-orbit-ring eeg-orbit-2">
+                                <div class="eeg-orbit-dot"></div>
+                                <div class="eeg-orbit-dot" style="transform: rotate(90deg) translateX(140px) rotate(-90deg);"></div>
+                                <div class="eeg-orbit-dot" style="transform: rotate(180deg) translateX(140px) rotate(-180deg);"></div>
+                                <div class="eeg-orbit-dot" style="transform: rotate(270deg) translateX(140px) rotate(-270deg);"></div>
+                            </div>
+                            <!-- Inner rotating ring -->
+                            <div class="eeg-orbit-ring eeg-orbit-3">
+                                <div class="eeg-orbit-dot"></div>
+                                <div class="eeg-orbit-dot" style="transform: rotate(180deg) translateX(90px) rotate(-180deg);"></div>
+                            </div>
+                            
+                            <!-- Center glow with dynamic content -->
+                            <div class="eeg-central-glow">
+                                <div class="eeg-core-icon">⚡</div>
+                                <div class="eeg-benefit-display">
+                                    <div class="eeg-benefit-title">EEG AI</div>
+                                    <div class="eeg-benefit-subtitle">Platform</div>
+                                </div>
+                            </div>
+                            
+                            <!-- Floating particles -->
+                            <div class="eeg-floating-particles">
+                                <div class="eeg-particle eeg-particle-1"></div>
+                                <div class="eeg-particle eeg-particle-2"></div>
+                                <div class="eeg-particle eeg-particle-3"></div>
+                                <div class="eeg-particle eeg-particle-4"></div>
+                                <div class="eeg-particle eeg-particle-5"></div>
+                            </div>
+                        </div>
+                        
+                        <!-- Benefit indicators around portal -->
+                        <div class="eeg-benefit-indicators">
+                            <div class="eeg-benefit-dot eeg-benefit-speed" style="position: absolute; top: 15%; right: 10%;">
+                                <span class="eeg-benefit-label">4min</span>
+                            </div>
+                            <div class="eeg-benefit-dot eeg-benefit-accuracy" style="position: absolute; bottom: 20%; left: 5%;">
+                                <span class="eeg-benefit-label">96%</span>
+                            </div>
+                            <div class="eeg-benefit-dot eeg-benefit-cost" style="position: absolute; top: 25%; left: 15%;">
+                                <span class="eeg-benefit-label">↓Cost</span>
+                            </div>
+                            <div class="eeg-benefit-dot eeg-benefit-care" style="position: absolute; bottom: 15%; right: 8%;">
+                                <span class="eeg-benefit-label">Fast</span>
+                            </div>
+                            <div class="eeg-benefit-dot eeg-benefit-precision" style="position: absolute; top: 50%; right: 2%;">
+                                <span class="eeg-benefit-label">AI</span>
+                            </div>
+                            <div class="eeg-benefit-dot eeg-benefit-response" style="position: absolute; top: 8%; left: 40%;">
+                                <span class="eeg-benefit-label">Real-time</span>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="col-lg-5 col-xl-5">
+
+                    <div class="mil-mb-90">
+                        <h2 class="mil-up mil-mb-60 mil-muted">Benefits <span class="mil-thin">for</span> <br>Patients</h2>
+
+                        <div class="mil-up mil-mb-20 eeg-benefit-item" 
+                             data-title="Faster" 
+                             data-subtitle="Results"
+                             data-icon="⏱️">
+                            <h6 class="mil-mb-10">
+                                <i class="fas fa-stopwatch mil-accent" style="margin-right:8px"></i>
+                                <span class="mil-muted">Faster results</span>
+                            </h6>
+                            <p class="mil-light-soft">Reduce waiting time dramatically — typical reads drop from 45 minutes to around 4 minutes, enabling quicker decisions and discharge.</p>
+                        </div>
+
+                        <div class="mil-up mil-mb-20 eeg-benefit-item" 
+                             data-title="Timely" 
+                             data-subtitle="Care"
+                             data-icon="🚨"
+                             style="transition-delay: .05s;">
+                            <h6 class="mil-mb-10">
+                                <i class="fas fa-first-aid mil-accent" style="margin-right:8px"></i>
+                                <span class="mil-muted">Timely interventions</span>
+                            </h6>
+                            <p class="mil-light-soft">Early AI flags alert clinicians sooner, improving outcomes in emergencies such as seizures or ischemic events.</p>
+                        </div>
+
+                        <div class="mil-up mil-mb-20 eeg-benefit-item" 
+                             data-title="Greater" 
+                             data-subtitle="Accuracy"
+                             data-icon="✓"
+                             style="transition-delay: .1s;">
+                            <h6 class="mil-mb-10">
+                                <i class="fas fa-check-circle mil-accent" style="margin-right:8px"></i>
+                                <span class="mil-muted">Greater accuracy</span>
+                            </h6>
+                            <p class="mil-light-soft">Combined AI + expert review reduces misdiagnosis risk and leads to clearer, more personalized treatment plans.</p>
+                        </div>
+
+                        <div class="mil-up mil-mb-20 eeg-benefit-item" 
+                             data-title="Lower" 
+                             data-subtitle="Costs"
+                             data-icon="💰"
+                             style="transition-delay: .15s;">
+                            <h6 class="mil-mb-10">
+                                <i class="fas fa-wallet mil-accent" style="margin-right:8px"></i>
+                                <span class="mil-muted">Lower costs</span>
+                            </h6>
+                            <p class="mil-light-soft">Faster throughput and accurate decisions mean shorter hospital stays and more efficient care pathways.</p>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<script>
+(function() {
+    function initEEGBenefitDisplay() {
+        const benefitItems = document.querySelectorAll('.eeg-benefit-item');
+        const benefitDisplay = document.querySelector('.eeg-benefit-display');
+        const coreIcon = document.querySelector('.eeg-core-icon');
+        const centralGlow = document.querySelector('.eeg-central-glow');
+        
+        if (benefitItems.length > 0 && benefitDisplay && coreIcon && centralGlow) {
+            benefitItems.forEach((item) => {
+                item.addEventListener('mouseenter', function() {
+                    // Get data from item
+                    const title = item.getAttribute('data-title');
+                    const subtitle = item.getAttribute('data-subtitle');
+                    const icon = item.getAttribute('data-icon');
+                    
+                    // Update display content
+                    const titleEl = benefitDisplay.querySelector('.eeg-benefit-title');
+                    const subtitleEl = benefitDisplay.querySelector('.eeg-benefit-subtitle');
+                    
+                    if (titleEl && subtitleEl) {
+                        titleEl.textContent = title;
+                        subtitleEl.textContent = subtitle;
+                    }
+                    
+                    // Update icon
+                    coreIcon.textContent = icon;
+                    
+                    // Add active state
+                    centralGlow.classList.add('eeg-active');
+                    
+                    // Enhance glow effect
+                    centralGlow.style.transform = 'scale(1.1)';
+                    centralGlow.style.filter = 'brightness(1.2)';
+                });
+                
+                item.addEventListener('mouseleave', function() {
+                    // Reset to default
+                    const titleEl = benefitDisplay.querySelector('.eeg-benefit-title');
+                    const subtitleEl = benefitDisplay.querySelector('.eeg-benefit-subtitle');
+                    
+                    if (titleEl && subtitleEl) {
+                        titleEl.textContent = 'EEG AI';
+                        subtitleEl.textContent = 'Platform';
+                    }
+                    
+                    coreIcon.textContent = '⚡';
+                    
+                    // Remove active state
+                    centralGlow.classList.remove('eeg-active');
+                    
+                    // Reset glow effect
+                    centralGlow.style.transform = 'scale(1)';
+                    centralGlow.style.filter = 'brightness(1)';
+                });
+            });
+        }
+    }
+    
+    // Initialize when DOM is ready
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', initEEGBenefitDisplay);
+    } else {
+        initEEGBenefitDisplay();
+    }
+    
+    // Also try with a delay to ensure elements are rendered
+    setTimeout(initEEGBenefitDisplay, 500);
+})();
+</script>
+
+{% endblock %}
+
+

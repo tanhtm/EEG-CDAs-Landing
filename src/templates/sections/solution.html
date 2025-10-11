@@ -1,0 +1,92 @@
+{% load static %}
+{% block content %}
+<section class="mil-dark-bg">
+    <div class="mi-invert-fix">
+        <div class="mil-animation-frame">
+            <div class="mil-animation mil-position-1 mil-scale" data-value-1="2.4" data-value-2="1.4" style="top: 300px; right: -100px"></div>
+            <div class="mil-animation mil-position-2 mil-scale" data-value-1="2" data-value-2="1" style="left: 150px"></div>
+        </div>
+
+        <div class="container mil-p-120-0">
+
+            <div class="mil-mb-120">
+                <div class="row">
+                    <div class="col-lg-10">
+                        <span class="mil-suptitle mil-light-soft mil-suptitle-right mil-up">
+                            We turn complex EEG signals into clear, standardized, <br>and interoperable clinical insights.
+                        </span>
+                    </div>
+                </div>
+
+                <!-- Section title -->
+                <div class="mil-complex-text justify-content-center mil-up mil-mb-15">
+                    <span class="mil-text-image"><img src="{% static 'img/photo/2.jpg' %}" alt="AI EEG"></span>
+                    <h2 class="mil-h1 mil-muted mil-center">Intelligent <span class="mil-thin">Signals</span></h2>
+                </div>
+                <div class="mil-complex-text justify-content-center mil-up">
+                    <h2 class="mil-h1 mil-muted mil-center">Smarter <span class="mil-thin">Decisions.</span></h2>
+                    <a href="services.html" class="mil-services-button mil-button mil-arrow-place">
+                        <span>What we do</span>
+                    </a>
+                </div>
+            </div>
+
+            <!-- WHAT YOU GET -->
+            <div class="row mil-services-grid m-0">
+                <!-- 1 -->
+                <div class="col-md-6 col-lg-3 mil-services-grid-item p-0">
+                    <a href="#" class="mil-service-card-sm mil-up">
+                        <h5 class="mil-muted mil-mb-30">
+                            Real-time <br>AI Analysis
+                        </h5>
+                        <p class="mil-light-soft mil-mb-30">
+                            Analyze EEG signals (alpha, beta, delta, theta, artifacts, abnormalities) in real time for faster and more accurate diagnostics.
+                        </p>
+                        <div class="mil-button mil-icon-button-sm mil-arrow-place"></div>
+                    </a>
+                </div>
+
+                <!-- 2 -->
+                <div class="col-md-6 col-lg-3 mil-services-grid-item p-0">
+                    <a href="#" class="mil-service-card-sm mil-up">
+                        <h5 class="mil-muted mil-mb-30">
+                            Automated <br>Narrative Reports
+                        </h5>
+                        <p class="mil-light-soft mil-mb-30">
+                            Generate clinical-grade EEG summaries automatically — editable by neurologists using familiar medical terminology.
+                        </p>
+                        <div class="mil-button mil-icon-button-sm mil-arrow-place"></div>
+                    </a>
+                </div>
+
+                <!-- 3 -->
+                <div class="col-md-6 col-lg-3 mil-services-grid-item p-0">
+                    <a href="#" class="mil-service-card-sm mil-up">
+                        <h5 class="mil-muted mil-mb-30">
+                            Seamless <br>Integration
+                        </h5>
+                        <p class="mil-light-soft mil-mb-30">
+                            Full interoperability with HIS and PACS systems — including automatic DICOM conversion and secure API connections.
+                        </p>
+                        <div class="mil-button mil-icon-button-sm mil-arrow-place"></div>
+                    </a>
+                </div>
+
+                <!-- 4 -->
+                <div class="col-md-6 col-lg-3 mil-services-grid-item p-0">
+                    <a href="#" class="mil-service-card-sm mil-up">
+                        <h5 class="mil-muted mil-mb-30">
+                            Scalable <br>Deployment
+                        </h5>
+                        <p class="mil-light-soft mil-mb-30">
+                            Deploy from single hospitals to nationwide healthcare networks — designed for flexibility, speed, and compliance.
+                        </p>
+                        <div class="mil-button mil-icon-button-sm mil-arrow-place"></div>
+                    </a>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+{% endblock %}
