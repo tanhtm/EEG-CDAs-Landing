@@ -136,15 +136,25 @@
 
 <script>
 (function() {
+    let randomHighlightInterval;
+    let isUserHovering = false;
+    
     function initEEGBenefitDisplay() {
         const benefitItems = document.querySelectorAll('.eeg-benefit-item');
         const benefitDisplay = document.querySelector('.eeg-benefit-display');
         const coreIcon = document.querySelector('.eeg-core-icon');
         const centralGlow = document.querySelector('.eeg-central-glow');
+        const portalContainer = document.querySelector('.eeg-portal-container');
         
         if (benefitItems.length > 0 && benefitDisplay && coreIcon && centralGlow) {
+            // Start random highlighting
+            startRandomHighlighting();
+            
             benefitItems.forEach((item) => {
                 item.addEventListener('mouseenter', function() {
+                    isUserHovering = true;
+                    clearInterval(randomHighlightInterval);
+                    
                     // Get data from item
                     const title = item.getAttribute('data-title');
                     const subtitle = item.getAttribute('data-subtitle');
@@ -168,9 +178,14 @@
                     // Enhance glow effect
                     centralGlow.style.transform = 'scale(1.1)';
                     centralGlow.style.filter = 'brightness(1.2)';
+                    
+                    // Trigger specific random highlights for this item
+                    triggerFocusedHighlight();
                 });
                 
                 item.addEventListener('mouseleave', function() {
+                    isUserHovering = false;
+                    
                     // Reset to default
                     const titleEl = benefitDisplay.querySelector('.eeg-benefit-title');
                     const subtitleEl = benefitDisplay.querySelector('.eeg-benefit-subtitle');
@@ -188,9 +203,100 @@
                     // Reset glow effect
                     centralGlow.style.transform = 'scale(1)';
                     centralGlow.style.filter = 'brightness(1)';
+                    
+                    // Clear any focused highlights
+                    clearFocusedHighlights();
+                    
+                    // Restart random highlighting after a short delay
+                    setTimeout(() => {
+                        if (!isUserHovering) {
+                            startRandomHighlighting();
+                        }
+                    }, 500);
                 });
             });
+            
+            // Section-wide hover effects
+            if (portalContainer) {
+                portalContainer.addEventListener('mouseenter', function() {
+                    portalContainer.classList.add('eeg-section-active');
+                });
+                
+                portalContainer.addEventListener('mouseleave', function() {
+                    portalContainer.classList.remove('eeg-section-active');
+                });
+            }
         }
+    }
+    
+    function startRandomHighlighting() {
+        randomHighlightInterval = setInterval(() => {
+            if (!isUserHovering) {
+                triggerRandomHighlight();
+            }
+        }, 2000 + Math.random() * 2000); // Random interval between 2-4 seconds
+    }
+    
+    function triggerRandomHighlight() {
+        const elements = [
+            ...document.querySelectorAll('.eeg-orbit-dot'),
+            ...document.querySelectorAll('.eeg-benefit-dot'),
+            ...document.querySelectorAll('.eeg-particle')
+        ];
+        
+        // Remove existing random highlights
+        elements.forEach(el => el.classList.remove('eeg-random-highlight'));
+        
+        // Randomly select 2-4 elements to highlight
+        const numToHighlight = 2 + Math.floor(Math.random() * 3);
+        const selectedElements = [];
+        
+        for (let i = 0; i < numToHighlight && i < elements.length; i++) {
+            let randomElement;
+            do {
+                randomElement = elements[Math.floor(Math.random() * elements.length)];
+            } while (selectedElements.includes(randomElement));
+            
+            selectedElements.push(randomElement);
+            randomElement.classList.add('eeg-random-highlight');
+        }
+        
+        // Remove highlights after 1-2 seconds
+        setTimeout(() => {
+            selectedElements.forEach(el => {
+                if (el) el.classList.remove('eeg-random-highlight');
+            });
+        }, 1000 + Math.random() * 1000);
+    }
+    
+    function triggerFocusedHighlight() {
+        const allElements = [
+            ...document.querySelectorAll('.eeg-orbit-dot'),
+            ...document.querySelectorAll('.eeg-benefit-dot'),
+            ...document.querySelectorAll('.eeg-particle')
+        ];
+        
+        // Clear any existing highlights
+        allElements.forEach(el => el.classList.remove('eeg-random-highlight', 'eeg-focused-highlight'));
+        
+        // Select more elements for focused highlight (4-6 elements)
+        const numToHighlight = 4 + Math.floor(Math.random() * 3);
+        const selectedElements = [];
+        
+        for (let i = 0; i < numToHighlight && i < allElements.length; i++) {
+            let randomElement;
+            do {
+                randomElement = allElements[Math.floor(Math.random() * allElements.length)];
+            } while (selectedElements.includes(randomElement));
+            
+            selectedElements.push(randomElement);
+            randomElement.classList.add('eeg-focused-highlight');
+        }
+    }
+    
+    function clearFocusedHighlights() {
+        const elements = document.querySelectorAll('.eeg-focused-highlight');
+        elements.forEach(el => el.classList.remove('eeg-focused-highlight'));
     }
     
     // Initialize when DOM is ready
