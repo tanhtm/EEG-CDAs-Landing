@@ -628,15 +628,96 @@ $(function () {
   });
   /***************************
 
-    fancybox
+    fancybox v4 - Safe initialization to prevent conflicts
 
     ***************************/
-  $('[data-fancybox="gallery"]').fancybox({
-    buttons: ["slideShow", "zoom", "fullScreen", "close"],
-    loop: false,
-    protect: true,
+  // Fancybox v4 Safe Initialization
+  function initFancyboxV4() {
+    // Destroy any existing instances
+    try { 
+      Fancybox.destroy(); 
+      console.log('Destroyed existing Fancybox instances');
+    } catch (e) {
+      // No instances to destroy
+    }
+
+    // Initialize benefit-hospital gallery with simpler config
+    Fancybox.bind('[data-fancybox="benefit-hospital"]', {
+      // Basic settings
+      animated: true,
+      hideScrollbar: false,
+      
+      // Toolbar configuration
+      Toolbar: {
+        display: {
+          left: [],
+          middle: [],
+          right: ["zoom", "slideshow", "fullscreen", "close"]
+        }
+      },
+      
+      // Image settings
+      Images: {
+        zoom: true,
+        wheel: "zoom"
+      },
+      
+      // Carousel settings
+      Carousel: {
+        transition: "slide"
+      }
+    });
+
+    // Initialize general gallery
+    Fancybox.bind('[data-fancybox="gallery"]', {
+      animated: true,
+      hideScrollbar: false,
+      Toolbar: {
+        display: {
+          left: [],
+          middle: [],
+          right: ["slideshow", "zoom", "fullscreen", "close"]
+        }
+      },
+      Images: {
+        zoom: true,
+        wheel: "zoom"
+      }
+    });
+
+    console.log('Fancybox v4 initialized successfully');
+    
+    // Test if elements exist
+    const elements = document.querySelectorAll('[data-fancybox="benefit-hospital"]');
+    console.log('Found ' + elements.length + ' benefit-hospital elements');
+  }
+
+  $(document).ready(function() {
+    console.log('Document ready, checking for Fancybox...');
+    
+    function waitForFancybox() {
+      if (typeof window.Fancybox !== 'undefined' && window.Fancybox.bind) {
+        console.log('Fancybox v4 found, initializing...');
+        initFancyboxV4();
+      } else {
+        console.log('Waiting for Fancybox to load...');
+        setTimeout(waitForFancybox, 100);
+      }
+    }
+    
+    // Start waiting for Fancybox
+    waitForFancybox();
   });
-  $.fancybox.defaults.hash = false;
+
+  // Re-initialize on swup content replacement
+  $(document).on('swup:contentReplaced', function() {
+    console.log('Swup content replaced, re-initializing Fancybox...');
+    setTimeout(function() {
+      if (typeof window.Fancybox !== 'undefined' && window.Fancybox.bind) {
+        initFancyboxV4();
+      }
+    }, 100);
+  });
   /***************************
 
     reviews slider
@@ -1092,38 +1173,12 @@ $(function () {
         );
       });
     }
-
-    const rotate = document.querySelectorAll(".mil-rotate");
-
-    rotate.forEach((section) => {
-      var value = $(section).data("value");
-      gsap.fromTo(
-        section,
-        {
-          ease: "sine",
-          rotate: 0,
-        },
-        {
-          rotate: value,
-          scrollTrigger: {
-            trigger: section,
-            scrub: true,
-            toggleActions: "play none none reverse",
-          },
-        }
-      );
-    });
     /***************************
 
-        fancybox
+        fancybox v4 - Handled by event listener above
 
         ***************************/
-    $('[data-fancybox="gallery"]').fancybox({
-      buttons: ["slideShow", "zoom", "fullScreen", "close"],
-      loop: false,
-      protect: true,
-    });
-    $.fancybox.defaults.hash = false;
+    // Fancybox v4 is automatically re-initialized via "swup:contentReplaced" event listener
     /***************************
 
         reviews slider

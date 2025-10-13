@@ -3167,17 +3167,7 @@ team
   overflow: hidden;
   padding-bottom: 130%;
 }
-.mil-team-card:after {
-  content: "";
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  height: 4px;
-  width: 0;
-  background-color: rgb(255, 152, 0);
-  -webkit-transition: 0.6s cubic-bezier(0, 0, 0.3642, 1);
-  transition: 0.6s cubic-bezier(0, 0, 0.3642, 1);
-}
+.mil-team-card:after { display: none; }
 .mil-team-card img {
   position: absolute;
   top: 0;
@@ -3203,30 +3193,7 @@ team
     transform: none;
   }
 }
-.mil-team-card .mil-description {
-  opacity: 0;
-  text-align: center;
-  background-color: rgba(0, 0, 0, 0.8);
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  padding: 60px 30px;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-  -ms-flex-direction: column;
-  flex-direction: column;
-  -webkit-box-pack: end;
-  -ms-flex-pack: end;
-  justify-content: flex-end;
-  pointer-events: none;
-  -webkit-transition: 0.6s cubic-bezier(0, 0, 0.3642, 1);
-  transition: 0.6s cubic-bezier(0, 0, 0.3642, 1);
-}
+.mil-team-card .mil-description { display: none; }
 .mil-team-card .mil-description .mil-secrc-text {
   opacity: 0;
   -webkit-transform: translateY(15px);
@@ -3244,24 +3211,7 @@ team
 .mil-team-card .mil-description .mil-secrc-text a:hover {
   color: rgb(255, 152, 0);
 }
-.mil-team-card:hover img {
-  -webkit-transform: scale(1);
-  transform: scale(1);
-}
-.mil-team-card:hover:after {
-  width: 100%;
-}
-.mil-team-card:hover .mil-description {
-  opacity: 1;
-  pointer-events: all;
-}
-.mil-team-card:hover .mil-description .mil-secrc-text {
-  opacity: 1;
-  -webkit-transform: translateY(0);
-  transform: translateY(0);
-  -webkit-transition-delay: 0.1s;
-  transition-delay: 0.1s;
-}
+.mil-team-card:hover img { -webkit-transform: none; transform: none; }
 
 .mil-team-list {
   position: relative;
@@ -5292,4 +5242,118 @@ html.is-animating .mil-menu-frame {
   .mil-arrow-connection {
     display: none;
   }
+}
+
+/* ===================================
+   About Section Title Balance
+   =================================== */
+
+/* Căn chỉnh 2 tiêu đề h2 cho cân nhau */
+#about h2 {
+  font-size: 68px !important;
+  font-weight: 500 !important;
+  line-height: 120% !important;
+  color: #333 !important;
+  margin-bottom: 60px !important;
+  font-family: "Outfit", sans-serif !important;
+}
+
+/* Đảm bảo cả 2 tiêu đề có cùng vị trí bắt đầu */
+#about .col-lg-6:first-child h2,
+#about .col-lg-5:last-child h2 {
+  margin-top: 0 !important;
+  padding-top: 0 !important;
+  margin-bottom: 60px !important;
+}
+
+/* Responsive sizing for about section titles */
+@media screen and (max-width: 1200px) {
+  #about h2 {
+    font-size: 56px !important;
+  }
+}
+
+@media screen and (max-width: 992px) {
+  #about h2 {
+    font-size: 44px !important;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  #about h2 {
+    font-size: 36px !important;
+  }
+}
+
+@media screen and (max-width: 576px) {
+  #about h2 {
+    font-size: 30px !important;
+    margin-bottom: 40px !important;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  #about h2 {
+    font-size: 26px !important;
+    margin-bottom: 30px !important;
+  }
+}
+
+/* Fancybox v4 Custom Enhancements */
+.fancybox__backdrop {
+  background-color: rgba(0, 0, 0, 0.9);
+}
+
+.fancybox__slide {
+  padding: 20px;
+}
+
+.fancybox__content {
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+/* Enhanced animations */
+.f-fadeIn {
+  animation: fancyboxFadeIn 0.3s ease-out;
+}
+
+.f-fadeOut {
+  animation: fancyboxFadeOut 0.3s ease-in;
+}
+
+@keyframes fancyboxFadeIn {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes fancyboxFadeOut {
+  from {
+    opacity: 1;
+    transform: scale(1);
+  }
+  to {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+}
+
+/* Toolbar styling */
+.fancybox__toolbar {
+  background: rgba(0, 0, 0, 0.8);
+  backdrop-filter: blur(10px);
+}
+
+.fancybox__button {
+  transition: all 0.2s ease;
+}
+
+.fancybox__button:hover {
+  background-color: rgba(255, 255, 255, 0.1);
 }
