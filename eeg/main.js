@@ -534,3 +534,102 @@ document.addEventListener('DOMContentLoaded', () => {
     startAutoPlay(5000);
 });
 
+// ========== Feedback Section Interactive Effects ==========
+document.addEventListener('DOMContentLoaded', () => {
+    const testimonialCards = document.querySelectorAll('.testimonial-card');
+    
+    // Card hover effects with parallax
+    testimonialCards.forEach(card => {
+        card.addEventListener('mouseenter', () => {
+            card.style.transform = 'translateY(-8px) scale(1.02)';
+        });
+        
+        card.addEventListener('mouseleave', () => {
+            card.style.transform = 'translateY(0) scale(1)';
+        });
+        
+        // Parallax effect on mouse move
+        card.addEventListener('mousemove', (e) => {
+            const rect = card.getBoundingClientRect();
+            const x = e.clientX - rect.left;
+            const y = e.clientY - rect.top;
+            const centerX = rect.width / 2;
+            const centerY = rect.height / 2;
+            const rotateX = (y - centerY) / 10;
+            const rotateY = (centerX - x) / 10;
+            
+            card.style.transform = `translateY(-8px) scale(1.02) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
+        });
+        
+        card.addEventListener('mouseleave', () => {
+            card.style.transform = 'translateY(0) scale(1) rotateX(0deg) rotateY(0deg)';
+        });
+    });
+    
+    // Intersection Observer for testimonial animations
+    const testimonialObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                const card = entry.target;
+                const delay = card.getAttribute('data-delay') || 0;
+                
+                setTimeout(() => {
+                    card.style.opacity = '1';
+                    card.style.transform = 'translateY(0)';
+                }, parseInt(delay));
+            }
+        });
+    }, {
+        threshold: 0.1,
+        rootMargin: '0px 0px -50px 0px'
+    });
+    
+    // Observe all testimonial cards
+    testimonialCards.forEach(card => {
+        card.style.opacity = '0';
+        card.style.transform = 'translateY(30px)';
+        card.style.transition = 'all 0.6s cubic-bezier(0.4, 0, 0.2, 1)';
+        testimonialObserver.observe(card);
+    });
+    
+    // Auto-rotate testimonials (optional)
+    let currentTestimonial = 0;
+    const visibleCards = Array.from(testimonialCards).filter(card => 
+        card.style.display !== 'none'
+    );
+    
+    function highlightTestimonial() {
+        // Remove highlight from all cards
+        testimonialCards.forEach(card => {
+            card.classList.remove('highlighted');
+        });
+        
+        // Add highlight to current card
+        if (visibleCards[currentTestimonial]) {
+            visibleCards[currentTestimonial].classList.add('highlighted');
+        }
+        
+        // Move to next card
+        currentTestimonial = (currentTestimonial + 1) % visibleCards.length;
+    }
+    
+    // Start auto-highlight every 4 seconds
+    setInterval(highlightTestimonial, 4000);
+    
+    
+    // Add CSS for highlighted state
+    const style = document.createElement('style');
+    style.textContent = `
+        .testimonial-card.highlighted {
+            border-color: var(--primary);
+            box-shadow: 0 8px 30px rgba(0, 179, 199, 0.2);
+            transform: translateY(-4px) scale(1.01);
+        }
+        
+        .testimonial-card.highlighted::before {
+            opacity: 1;
+        }
+    `;
+    document.head.appendChild(style);
+});
+
