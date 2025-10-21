@@ -23,6 +23,10 @@
                 <div class="nav_layout">
                     <a href="/" class="nav_logo_link">egrams</a>
                     <div class="nav-menu-2">
+                        <a href="#video-demo" class="button_link">
+                            <div class="icon_wrapper"><div class="icon-dot"></div></div>
+                            <div class="button_text">Video Demo</div>
+                        </a>
                         <a href="#technology" class="button_link">
                             <div class="icon_wrapper"><div class="icon-dot"></div></div>
                             <div class="button_text">Technology</div>
@@ -66,22 +70,14 @@
 
                             <div class="space-small"></div>
                             <div style="display: flex; gap: 1rem; flex-wrap: nowrap; align-items: center;">
-                                <button id="videoModalBtn" class="button-3" style="background: var(--primary); border: 2px solid var(--primary); color: white;">
-                                    <div class="button-3_content-wrap">WATCH A VIDEO DEMO</div>
+                                <a href="#video-demo" class="button-3" style="background: var(--primary); border: 2px solid var(--primary); color: white;">
+                                    <div class="button-3_content-wrap">WATCH VIDEO DEMO</div>
                                     <div class="button-3_arrow-wrapper">
                                         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                                             <polygon points="5 3 19 12 5 21 5 3"/>
                                         </svg>
                                     </div>
-                                </button>
-                                <!-- <a href="#technology" class="button-3" style="background: #FF8C42; border: 2px solid #FF8C42; color: white; box-shadow: 0 4px 20px rgba(255, 140, 66, 0.4);">
-                                    <div class="button-3_content-wrap">EXPLORE OUR TECHNOLOGY</div>
-                                    <div class="button-3_arrow-wrapper">
-                                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                            <path d="M5 12h14m-6 6l6-6m-6-6l6 6"/>
-                                        </svg>
-                                    </div>
-                                </a> -->
+                                </a>
                             </div>
                         </div>
 
@@ -105,7 +101,7 @@
                             </textPath>
                         </text>
                     </svg>
-                    <a href="#story" class="scroll-down-arrow">
+                    <a href="#video-demo" class="scroll-down-arrow">
                         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2">
                             <path d="M5 12h14m-6 6l6-6m-6-6l6 6"/>
                         </svg>
@@ -225,6 +221,28 @@
             </div>
         </section>
 
+
+        <!-- Video Demo Section -->
+        <div class="container-wrapper" id="video-demo">
+            <div class="page-container">
+                <section class="video-demo-section fade-in-section">
+                    <h2 class="heading-2 blue text-center">Video Demo</h2>
+                    <div class="video-demo-container">
+                        <div class="video-wrapper">
+                            <iframe 
+                                id="demoVideo" 
+                                width="100%" 
+                                height="100%" 
+                                src="https://www.youtube.com/embed/CrtB-Tb-J_o?rel=0&modestbranding=1" 
+                                frameborder="0" 
+                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                                allowfullscreen>
+                            </iframe>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </div>
 
         <!-- Story Section -->
         <div class="container-wrapper green" id="story">
@@ -418,16 +436,6 @@
         </div>
 
     </main>
-
-    <!-- Video Modal -->
-    <div id="videoModal" class="video-modal">
-        <div class="video-modal-content">
-            <span class="video-modal-close">&times;</span>
-            <div class="video-container">
-                <iframe id="youtubeIframe" width="100%" height="100%" src="" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-            </div>
-        </div>
-    </div>
 
     <!-- Footer -->
     <footer>

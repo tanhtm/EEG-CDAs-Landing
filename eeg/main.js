@@ -455,6 +455,11 @@ document.addEventListener('DOMContentLoaded', () => {
     const techSteps = document.querySelectorAll('.tech-step');
     const techImages = document.querySelectorAll('.tech-image');
     
+    let currentStep = 1;
+    let autoPlayInterval;
+    let userInteracted = false;
+    const totalSteps = techSteps.length;
+    
     // Preload all images
     techImages.forEach(img => {
         if (img.complete) {
@@ -466,20 +471,51 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
     
+    // Function to show specific step
+    function showStep(stepNumber) {
+        // Remove active class from all steps and images
+        techSteps.forEach(s => s.classList.remove('active'));
+        techImages.forEach(img => img.classList.remove('active'));
+        
+        // Add active class to specified step and corresponding image
+        const targetStep = document.querySelector(`.tech-step[data-step="${stepNumber}"]`);
+        const targetImage = document.querySelector(`.tech-image[data-step="${stepNumber}"]`);
+        
+        if (targetStep) targetStep.classList.add('active');
+        if (targetImage) targetImage.classList.add('active');
+        
+        currentStep = stepNumber;
+    }
+    
+    // Function to go to next step
+    function nextStep() {
+        currentStep = currentStep >= totalSteps ? 1 : currentStep + 1;
+        showStep(currentStep);
+    }
+    
+    // Function to start auto-play
+    function startAutoPlay(delay = 5000) {
+        clearInterval(autoPlayInterval);
+        autoPlayInterval = setInterval(nextStep, delay);
+    }
+    
+    // Function to stop auto-play
+    function stopAutoPlay() {
+        clearInterval(autoPlayInterval);
+    }
+    
+    // Click handler for steps
     techSteps.forEach(step => {
         step.addEventListener('click', () => {
-            const stepNumber = step.getAttribute('data-step');
+            const stepNumber = parseInt(step.getAttribute('data-step'));
             
-            // Remove active class from all steps and images
-            techSteps.forEach(s => s.classList.remove('active'));
-            techImages.forEach(img => img.classList.remove('active'));
+            // Show clicked step immediately
+            showStep(stepNumber);
             
-            // Add active class to clicked step and corresponding image
-            step.classList.add('active');
-            const activeImage = document.querySelector(`.tech-image[data-step="${stepNumber}"]`);
-            if (activeImage) {
-                activeImage.classList.add('active');
-            }
+            // Mark user interaction and restart auto-play with 10s delay
+            userInteracted = true;
+            stopAutoPlay();
+            startAutoPlay(10000);
         });
         
         // Optional: Add hover effect
@@ -493,58 +529,8 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
     });
+    
+    // Start auto-play initially (5 seconds)
+    startAutoPlay(5000);
 });
 
-// ========== Video Modal ==========
-document.addEventListener('DOMContentLoaded', () => {
-    const modal = document.getElementById('videoModal');
-    const btn = document.getElementById('videoModalBtn');
-    const closeBtn = document.querySelector('.video-modal-close');
-    const iframe = document.getElementById('youtubeIframe');
-    
-    // PASTE YOUR YOUTUBE LINK HERE (full link or embed link)
-    const youtubeLink = 'https://www.youtube.com/watch?v=CrtB-Tb-J_o';
-    
-    // Auto convert to embed format
-    let embedUrl = youtubeLink;
-    if (youtubeLink.includes('watch?v=')) {
-        const videoId = youtubeLink.split('watch?v=')[1].split('&')[0];
-        embedUrl = `https://www.youtube.com/embed/${videoId}`;
-    } else if (youtubeLink.includes('youtu.be/')) {
-        const videoId = youtubeLink.split('youtu.be/')[1].split('?')[0];
-        embedUrl = `https://www.youtube.com/embed/${videoId}`;
-    }
-    
-    // Open modal
-    btn.addEventListener('click', (e) => {
-        e.preventDefault();
-        modal.classList.add('active');
-        // Load YouTube video with autoplay
-        iframe.src = `${embedUrl}?autoplay=1&rel=0`;
-        document.body.style.overflow = 'hidden';
-    });
-    
-    // Close modal
-    const closeModal = () => {
-        modal.classList.remove('active');
-        // Stop video by clearing src
-        iframe.src = '';
-        document.body.style.overflow = '';
-    };
-    
-    closeBtn.addEventListener('click', closeModal);
-    
-    // Close when clicking outside
-    modal.addEventListener('click', (e) => {
-        if (e.target === modal) {
-            closeModal();
-        }
-    });
-    
-    // Close with ESC key
-    document.addEventListener('keydown', (e) => {
-        if (e.key === 'Escape' && modal.classList.contains('active')) {
-            closeModal();
-        }
-    });
-});
