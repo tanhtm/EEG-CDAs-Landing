@@ -4,6 +4,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>egrams - White Neuron AI EEG Platform</title>
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/jpeg" href="image/egrams-logo-nbg.png">
+    <link rel="shortcut icon" type="image/jpeg" href="image/egrams-logo-nbg.png">
+    <link rel="apple-touch-icon" href="image/egrams-logo-nbg.png">
+    
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0/dist/fancybox/fancybox.css">
@@ -21,15 +27,13 @@
         <div class="nav_container">
             <div class="nav_border">
                 <div class="nav_layout">
-                    <a href="/" class="nav_logo_link">egrams</a>
+                    <a href="/" class="nav_logo_link">
+                        <img src="image/egrams-logo-nbg.png" alt="egrams logo" class="nav_logo_img">
+                    </a>
                     <div class="nav-menu-2">
                         <a href="#video-demo" class="button_link">
                             <div class="icon_wrapper"><div class="icon-dot"></div></div>
                             <div class="button_text">Video Demo</div>
-                        </a>
-                        <a href="#technology" class="button_link">
-                            <div class="icon_wrapper"><div class="icon-dot"></div></div>
-                            <div class="button_text">Technology</div>
                         </a>
                         <a href="#story" class="button_link">
                             <div class="icon_wrapper"><div class="icon-dot"></div></div>
@@ -38,6 +42,10 @@
                         <a href="#impact" class="button_link">
                             <div class="icon_wrapper"><div class="icon-dot"></div></div>
                             <div class="button_text">Impact</div>
+                        </a>
+                        <a href="#technology" class="button_link">
+                            <div class="icon_wrapper"><div class="icon-dot"></div></div>
+                            <div class="button_text">Technology</div>
                         </a>
                         <a href="#feedback" class="button_link">
                             <div class="icon_wrapper"><div class="icon-dot"></div></div>
@@ -267,8 +275,8 @@
                             </div>
 
                             <div class="space-small"></div>
-                            <a href="#technology" class="button-3">
-                                <div class="button-3_content-wrap">LEARN MORE ABOUT OUR TECHNOLOGY</div>
+                            <a href="#impact" class="button-3">
+                                <div class="button-3_content-wrap">SEE OUR IMPACT</div>
                                 <div class="button-3_arrow-wrapper">
                                     <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                                         <path d="M5 12h14m-6 6l6-6m-6-6l6 6"/>
@@ -282,6 +290,54 @@
                                 egrams Architecture — Deep learning model analyzing multi-channel EEG signals to detect abnormalities and generate clinical insights in real time.
                             </p>
 
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </div>
+
+        <!-- Impact Section -->
+        <div class="container-wrapper" id="impact">
+            <div class="page-container">
+                <section class="impact-section fade-in-section">
+                    <div class="feature-grid">
+                        <div class="hero-left-container">
+                            <h2 class="heading-2 orange">Impact</h2>
+                            <div class="space-small"></div>
+                            <div class="impact-stats-main-wapper">
+                            <div class="impact-stats-wrapper">
+                                <div class="stat-number" style="font-size: 3rem;"><span data-target="4">0</span><span style="font-size:.6em;">&nbsp;min/case</span></div>
+                                <div class="text-body" style="margin:0;">Report turnaround — up to <strong>90% faster</strong> than manual review</div>
+                            </div>
+                            <div class="impact-stats-wrapper">
+                                <div class="stat-number" style="font-size: 3rem;"><span data-target="94">0</span>–<span data-target="98">0</span><span style="font-size:.6em;">&nbsp;%</span></div>
+                                <div class="text-body" style="margin:0;">Clinical-grade accuracy verified in real-world EEG datasets</div>
+                            </div>
+                            <div class="impact-stats-wrapper">
+                                <div class="stat-number" style="font-size: 3rem;"><span data-target="10">0</span><span style="font-size:.6em;">&nbsp;×</span></div>
+                                <div class="text-body" style="margin:0;">More EEG cases processed per day — with the same clinical team</div>
+                            </div>
+                            <div class="impact-stats-wrapper">
+                                <div class="stat-number" style="font-size: 3rem;"><span data-target="100">0</span><span style="font-size:.6em;">&nbsp;%</span></div>
+                                <div class="text-body" style="margin:0;">HIS-ready with <strong>automatic DICOM conversion</strong> and secure APIs</div>
+                            </div>
+                            </div>
+
+                            <div class="space-small"></div>
+                            <a href="#technology" class="button-3">
+                                <div class="button-3_content-wrap">EXPLORE OUR TECHNOLOGY</div>
+                                <div class="button-3_arrow-wrapper">
+                                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <path d="M5 12h14m-6 6l6-6m-6-6l6 6"/>
+                                    </svg>
+                                </div>
+                            </a>
+                        </div>
+                        <!-- <div class="hero-gif">
+                            <canvas id="impactCanvas"></canvas>
+                        </div> -->
+                        <div class="hero-gif" style="position: relative; display: flex; align-items: center; justify-content: center;">
+                            <video src="video.mp4" autoplay loop muted preload="none" loading="lazy" style="width: 100%; height: auto; border-radius: 20px;"></video>
                         </div>
                     </div>
                 </section>
@@ -376,8 +432,8 @@
                             </div>
 
                             <div class="space-small"></div>
-                            <a href="#impact" class="button-3">
-                                <div class="button-3_content-wrap">IMPACT</div>
+                            <a href="#feedback" class="button-3">
+                                <div class="button-3_content-wrap">SEE WHAT OTHERS SAY</div>
                                 <div class="button-3_arrow-wrapper">
                                     <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                                         <path d="M5 12h14m-6 6l6-6m-6-6l6 6"/>
@@ -394,45 +450,6 @@
                                 <img src="image/Picture3.png" alt="Report Generation" class="tech-image" data-step="3" loading="lazy">
                                 <img src="image/Picture4.png" alt="System Integration" class="tech-image" data-step="4" loading="lazy">
                             </div>
-                        </div>
-                    </div>
-                </section>
-            </div>
-        </div>
-
-        <!-- Impact Section -->
-        <div class="container-wrapper" id="impact">
-            <div class="page-container">
-                <section class="impact-section fade-in-section">
-                    <div class="feature-grid">
-                        <div class="hero-left-container">
-                            <h2 class="heading-2 orange">Impact</h2>
-                            <div class="space-small"></div>
-                            <div class="impact-stats-main-wapper">
-                            <div class="impact-stats-wrapper">
-                                <div class="stat-number" style="font-size: 3rem;"><span data-target="4">0</span><span style="font-size:.6em;">&nbsp;min/case</span></div>
-                                <div class="text-body" style="margin:0;">Report turnaround — up to <strong>90% faster</strong> than manual review</div>
-                            </div>
-                            <div class="impact-stats-wrapper">
-                                <div class="stat-number" style="font-size: 3rem;"><span data-target="94">0</span>–<span data-target="98">0</span><span style="font-size:.6em;">&nbsp;%</span></div>
-                                <div class="text-body" style="margin:0;">Clinical-grade accuracy verified in real-world EEG datasets</div>
-                            </div>
-                            <div class="impact-stats-wrapper">
-                                <div class="stat-number" style="font-size: 3rem;"><span data-target="10">0</span><span style="font-size:.6em;">&nbsp;×</span></div>
-                                <div class="text-body" style="margin:0;">More EEG cases processed per day — with the same clinical team</div>
-                            </div>
-                            <div class="impact-stats-wrapper">
-                                <div class="stat-number" style="font-size: 3rem;"><span data-target="100">0</span><span style="font-size:.6em;">&nbsp;%</span></div>
-                                <div class="text-body" style="margin:0;">HIS-ready with <strong>automatic DICOM conversion</strong> and secure APIs</div>
-                            </div>
-                            </div>
-
-                        </div>
-                        <!-- <div class="hero-gif">
-                            <canvas id="impactCanvas"></canvas>
-                        </div> -->
-                        <div class="hero-gif" style="position: relative; display: flex; align-items: center; justify-content: center;">
-                            <video src="video.mp4" autoplay loop muted preload="none" loading="lazy" style="width: 100%; height: auto; border-radius: 20px;"></video>
                         </div>
                     </div>
                 </section>
@@ -624,7 +641,7 @@
                 <h3 style="font-size: 1.5rem; margin-bottom: 1rem;">egrams</h3>
                 <p style="color: #999;">Advancing brain research through AI and neuroscience</p>
                 <div style="margin-top: 1.5rem;">
-                    <a href="mailto:contact@eegneural.com" style="color: #ff8c42; text-decoration: none;">contact@eegneural.com</a>
+                    <a href="mailto:contact@egrams.ai" style="color: #ff8c42; text-decoration: none;">contact@egrams.ai</a>
                 </div>
             </div>
             <!-- <div class="uui-footer01_menu-wrapper">

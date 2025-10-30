@@ -288,7 +288,7 @@ body {
     position: fixed;
     top: 0;
     width: 100%;
-    background: rgba(246, 248, 252, 0.95);
+    background: white;
     backdrop-filter: blur(10px);
     -webkit-backdrop-filter: blur(10px);
     z-index: 1000;
@@ -317,7 +317,7 @@ body {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 1.5rem 0;
+    padding: 0.5rem 0;
 }
 
 .nav_logo_link {
@@ -330,10 +330,24 @@ body {
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
+    display: flex;
+    align-items: center;
+}
+
+.nav_logo_img {
+    height: 75px;
+    width: auto;
+    object-fit: contain;
+    transition: transform 0.3s ease, filter 0.3s ease;
+    /* background-color: white; */
 }
 
 .nav_logo_link:hover {
     filter: brightness(1.2);
+}
+
+.nav_logo_link:hover .nav_logo_img {
+    transform: scale(1.05);
 }
 
 .nav-menu-2 {
