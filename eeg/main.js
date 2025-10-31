@@ -355,6 +355,35 @@ class BrainNetwork {
 
 // Initialize all canvas elements when DOM is loaded
 document.addEventListener('DOMContentLoaded', () => {
+    // Mobile nav toggle
+    const navToggle = document.querySelector('.nav-toggle');
+    const mobileMenu = document.getElementById('mobileMenu');
+    if (navToggle && mobileMenu) {
+        const closeMenu = () => {
+            navToggle.classList.remove('active');
+            navToggle.setAttribute('aria-expanded', 'false');
+            mobileMenu.classList.remove('open');
+            document.body.classList.remove('menu-open');
+        };
+
+        navToggle.addEventListener('click', () => {
+            const isOpen = navToggle.classList.toggle('active');
+            navToggle.setAttribute('aria-expanded', String(isOpen));
+            mobileMenu.classList.toggle('open', isOpen);
+            document.body.classList.toggle('menu-open', isOpen);
+        });
+
+        // Close on link click
+        mobileMenu.querySelectorAll('a').forEach(a => {
+            a.addEventListener('click', () => closeMenu());
+        });
+
+        // Close on resize to desktop
+        window.addEventListener('resize', () => {
+            if (window.innerWidth > 991) closeMenu();
+        });
+    }
+
     // Hero Section - AI Cyan (#00B3C7)
     const heroCanvas = new BrainNetwork('heroCanvas', {
         particleCount: 120,
@@ -515,7 +544,7 @@ document.addEventListener('DOMContentLoaded', () => {
             // Mark user interaction and restart auto-play with 10s delay
             userInteracted = true;
             stopAutoPlay();
-            startAutoPlay(500000);
+            startAutoPlay(10000);
         });
         
         // Optional: Add hover effect

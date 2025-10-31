@@ -19,6 +19,7 @@
         rgba(255,140,66,0.3));
     --g-bg-dark: linear-gradient(180deg, var(--neutral-dark), #15171B);
     --g-hero: linear-gradient(135deg, #0E0F12 0%, #1a1d28 50%, #15171B 100%);
+    --nav-height: 86px;           /* default nav height */
 }
 
 * {
@@ -46,6 +47,11 @@ body {
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     position: relative;
+}
+
+/* Prevent body scroll when mobile menu open */
+body.menu-open {
+    overflow: hidden;
 }
 
 /* ========== Preloader ========== */
@@ -356,6 +362,51 @@ body {
     align-items: center;
 }
 
+/* Hamburger toggle - hidden on desktop */
+.nav-toggle {
+    display: none;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 8px;
+    margin-right: 6px;
+    border-radius: 8px;
+}
+
+.nav-toggle:focus {
+    outline: 2px solid rgba(0, 179, 199, 0.35);
+    outline-offset: 2px;
+}
+
+.nav-toggle .bar {
+    display: block;
+    width: 24px;
+    height: 2px;
+    background: #0a0a0a;
+    margin: 5px 0;
+    transition: transform 0.3s ease, opacity 0.3s ease, background 0.3s ease;
+}
+
+.nav_wrap.scrolled .nav-toggle .bar {
+    background: #0a0a0a;
+}
+
+/* OPEN STATE: đổi sang 3 vạch dọc đứng cạnh nhau */
+.nav-toggle.active {
+    flex-direction: row;
+    gap: 6px;
+}
+
+.nav-toggle.active .bar {
+    width: 2px;
+    height: 20px;
+    margin: 0;
+}
+
+.nav-toggle.active .bar:nth-child(1) { transform: translateX(0); }
+.nav-toggle.active .bar:nth-child(2) { transform: translateX(0); }
+.nav-toggle.active .bar:nth-child(3) { transform: translateX(0); }
+
 .button_link {
     display: inline-flex;
     align-items: center;
@@ -412,7 +463,7 @@ body {
     padding: 6rem clamp(1rem, 2.86vw, 3rem);
     position: relative;
     z-index: 10;
-    pointer-events: none; /* Container không chặn chuột */
+    pointer-events: auto; /* Cho phép tương tác bình thường */
 }
 
 .container-wrapper > * {
@@ -436,7 +487,7 @@ body {
     width: 100%;
     position: relative;
     z-index: 10;
-    pointer-events: none; /* Container không chặn chuột */
+    pointer-events: auto; /* Cho phép tương tác bình thường */
 }
 
 .page-container > * {
@@ -1097,10 +1148,12 @@ canvas {
     opacity: 0;
     transition: opacity 0.4s ease;
     backdrop-filter: blur(5px);
+    pointer-events: none; /* Không bắt sự kiện khi ẩn */
 }
 
 .gallery-item:hover .gallery-overlay {
     opacity: 1;
+    pointer-events: auto; /* Chỉ bắt sự kiện khi hiển thị */
 }
 
 .gallery-overlay i {
@@ -1324,6 +1377,7 @@ footer {
 
 /* Responsive */
 @media (max-width: 991px) {
+    :root { --nav-height: 72px; }
     .hero-grid,
     .feature-grid {
         grid-template-columns: 1fr;
@@ -1334,9 +1388,62 @@ footer {
         height: 450px;
     }
 
-    .nav-menu-2 {
-        display: none;
+    .nav-toggle {
+    display: inline-flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    z-index: 1200; /* cao hơn panel */
+    position: relative;
     }
+
+    .nav-menu-2 {
+        display: flex;
+        position: fixed;
+        top: var(--nav-height);
+        right: 8px;
+        left: 8px;
+        padding: 16px;
+        background: rgba(255,255,255,0.98);
+        backdrop-filter: blur(10px);
+        -webkit-backdrop-filter: blur(10px);
+        border: 1px solid rgba(0, 179, 199, 0.15);
+        border-top: none; /* liền mạch với thanh nav */
+        border-radius: 0 0 16px 16px; /* bo góc dưới */
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+        flex-direction: column;
+        gap: 8px;
+        z-index: 1100;
+        max-height: calc(100vh - var(--nav-height));
+        overflow-y: auto;
+        padding-right: 80px; /* chừa chỗ cho nút X */
+        /* animation state - hidden */
+        opacity: 0;
+        visibility: hidden;
+        pointer-events: none;
+        transform: translateY(-8px) scale(0.98);
+        transition: opacity .28s ease, transform .28s ease, visibility .28s ease;
+    }
+
+    .nav-menu-2.open {
+        opacity: 1;
+        visibility: visible;
+        pointer-events: auto;
+        transform: translateY(0) scale(1);
+    }
+
+    .nav_wrap.scrolled .nav-menu-2 {
+        background: rgba(246, 248, 252, 0.98);
+    }
+
+    .nav-menu-2 .button_link,
+    .nav-menu-2 .contact-us-button {
+        width: 100%;
+        justify-content: flex-start;
+    }
+
+    /* giảm logo và tăng khoảng cách top cho đẹp hơn ở mobile */
+    .nav_logo_img { height: 60px; }
 
     .impact-stats-main-wapper {
         grid-template-columns: 1fr;
@@ -1528,6 +1635,7 @@ footer {
     background: linear-gradient(135deg, #f5f5f5 0%, #e8e8e8 100%);
     box-shadow: 0 25px 70px rgba(0, 179, 199, 0.2);
     border: 3px solid rgba(0, 179, 199, 0.3);
+    box-sizing: border-box;
     transition: all 0.3s ease;
     padding: 0;
     margin: 0;
@@ -1653,8 +1761,23 @@ footer {
     .tech-image-display {
         position: relative;
         top: auto;
-        min-height: 380px;
-        margin-top: 1.5rem;
+        width: 100%;
+        max-width: 100%;
+        aspect-ratio: 16/9;
+        min-height: auto;
+        margin-top: 1.25rem;
+        border-width: 2px;
+        border-radius: 12px;
+        box-shadow: 0 15px 40px rgba(0, 179, 199, 0.18);
+    }
+}
+
+/* Khôi phục hiệu ứng sticky cho tablet để có cảm giác kéo ảnh xuống */
+@media (min-width: 768px) and (max-width: 991px) {
+    .our-technology-section .tech-image-display {
+        position: sticky;
+        top: 90px;
+        margin-top: 0;
     }
 }
 
@@ -1669,12 +1792,26 @@ footer {
     }
 
     .tech-image-display {
-        min-height: 300px;
+        width: 100%;
+        max-width: 100%;
+        aspect-ratio: 16/9;
+        min-height: auto;
+        border-width: 2px;
+        border-radius: 12px;
     }
 
     /* shrink active border a bit to avoid visual clipping on tiny widths */
     .tech-step.active .tech-step-header {
         border-width: 1.5px;
+    }
+}
+
+/* Tắt hoàn toàn hiệu ứng sticky ở màn điện thoại để tránh cột dọc kéo dài */
+@media (max-width: 767px) {
+    .our-technology-section .hero-gif,
+    .tech-image-display {
+        position: relative !important;
+        top: auto !important;
     }
 }
 
@@ -1708,9 +1845,13 @@ footer {
     }
 
     .tech-image-display {
+        width: 100%;
+        max-width: 100%;
+        aspect-ratio: 16/9;
+        min-height: auto;
         border-width: 2px;
         border-radius: 12px;
-        min-height: 240px;
+        box-shadow: 0 10px 28px rgba(0, 179, 199, 0.15);
     }
 
     .tech-step-icon {
@@ -1781,7 +1922,7 @@ footer {
 #technology .feature-grid,
 #technology .hero-left-container {
     max-width: 100%;
-    overflow-x: clip;
+    overflow-x: hidden;
 }
 
 .our-technology-section .hero-gif:hover {
@@ -1790,6 +1931,13 @@ footer {
 }
 
 @media (min-width: 992px) {
+    /* Bật lại sticky cho ảnh ở desktop */
+    .our-technology-section,
+    #technology .feature-grid,
+    #technology .hero-left-container {
+        overflow: visible; /* để sticky hoạt động mượt */
+    }
+
     .our-technology-section .hero-gif {
         position: sticky;
         top: 100px;
