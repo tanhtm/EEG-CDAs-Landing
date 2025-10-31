@@ -1386,7 +1386,7 @@ footer {
     gap: 1.5rem;
     padding: 1.5rem 2rem;
     background: transparent;
-    border-radius: 16px;
+    border-radius: 20px;
     border: none;
     transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     position: relative;
@@ -1431,7 +1431,7 @@ footer {
     pointer-events: none;
     opacity: 0;
     transition: opacity 0.3s ease;
-    border-radius: 16px;
+    border-radius: 20px;
 }
 
 .tech-step.active::before {
@@ -1446,7 +1446,7 @@ footer {
     align-items: center;
     justify-content: center;
     background: rgba(0, 179, 199, 0.1);
-    border-radius: 12px;
+    border-radius: 14px;
     transition: all 0.3s ease;
 }
 
@@ -1473,7 +1473,7 @@ footer {
     font-size: 1.25rem;
     font-weight: 600;
     color: #2a2a2a;
-    margin-bottom: 0.5rem;
+    margin-bottom: 0.35rem;
     transition: color 0.3s ease;
     overflow-wrap: anywhere;
     word-break: break-word;
@@ -1489,7 +1489,7 @@ footer {
     color: #666;
     line-height: 1.5;
     margin: 0;
-    padding-left: 2.25rem;
+    padding-left: 0;
     overflow-wrap: anywhere;
     word-break: break-word;
 }
@@ -1499,6 +1499,8 @@ footer {
     display: flex;
     align-items: center;
     justify-content: center;
+    margin-left: auto;
+    padding-left: 1rem;
 }
 
 .step-number {
@@ -1700,7 +1702,7 @@ footer {
     }
 
     .tech-step-desc {
-        padding-left: 1.5rem;
+        padding-left: 0;
     }
 
     .tech-image-display {
@@ -3135,7 +3137,7 @@ Back to Top Button - Vertical Layout
 }
 
 #video-demo .video-demo-container {
-    max-width: 800px;
+    max-width: 80%;
     margin: 0 auto;
 }
 
