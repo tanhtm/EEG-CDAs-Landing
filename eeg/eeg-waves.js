@@ -560,17 +560,21 @@ function initBackgroundWaves() {
         channelHeight = height / config.channels;
     }
     
-    // Mouse tracking với smooth interpolation
-    container.addEventListener('mousemove', (e) => {
+    // Mouse tracking với smooth interpolation (nghe trên window để không bị lớp khác đè)
+    const onMouseMove = (e) => {
         const rect = container.getBoundingClientRect();
         targetMouseX = e.clientX - rect.left;
         targetMouseY = e.clientY - rect.top;
-    });
-    
-    container.addEventListener('mouseleave', () => {
-        targetMouseX = -1000;
-        targetMouseY = -1000;
-    });
+    };
+    const onMouseOut = (e) => {
+        // Khi chuột rời khỏi cửa sổ hoặc ngoài container
+        if (e.relatedTarget === null || !container.contains(e.relatedTarget)) {
+            targetMouseX = -1000;
+            targetMouseY = -1000;
+        }
+    };
+    window.addEventListener('mousemove', onMouseMove);
+    window.addEventListener('mouseout', onMouseOut);
     
     // Generate realistic EEG wave with mouse influence
     function generateWave(channelIndex, centerY, time) {
@@ -694,6 +698,8 @@ function initBackgroundWaves() {
     return () => {
         cancelAnimationFrame(animationId);
         window.removeEventListener('resize', resize);
+        window.removeEventListener('mousemove', onMouseMove);
+        window.removeEventListener('mouseout', onMouseOut);
     };
 }
 

@@ -30,10 +30,19 @@
                     <a href="/" class="nav_logo_link">
                         <img src="image/egrams-logo-nbg.png" alt="egrams logo" class="nav_logo_img">
                     </a>
-                    <div class="nav-menu-2">
+                    <button class="nav-toggle" aria-label="Mở menu" aria-expanded="false" aria-controls="mobileMenu">
+                        <span class="bar"></span>
+                        <span class="bar"></span>
+                        <span class="bar"></span>
+                    </button>
+                    <div class="nav-menu-2" id="mobileMenu">
                         <a href="#video-demo" class="button_link">
                             <div class="icon_wrapper"><div class="icon-dot"></div></div>
                             <div class="button_text">Video Demo</div>
+                        </a>
+                        <a href="#about" class="button_link">
+                            <div class="icon_wrapper"><div class="icon-dot"></div></div>
+                            <div class="button_text">About</div>
                         </a>
                         <a href="#story" class="button_link">
                             <div class="icon_wrapper"><div class="icon-dot"></div></div>
@@ -257,6 +266,39 @@
         </div>
 
         <!-- Story Section -->
+        <!-- About Section -->
+        <div class="container-wrapper" id="about">
+            <div class="page-container">
+                <section class="fade-in-section">
+                    <div class="feature-grid">
+                        <div class="hero-left-container">
+                            <h2 class="heading-2 blue">About egrams</h2>
+                            <div class="space-small"></div>
+                            <div class="text-body right">
+                                egrams by White Neuron is an AI EEG platform that streamlines the entire clinical EEG workflow — from signal processing to automated, editable reporting — designed to integrate securely with hospital HIS/PACS and DICOM.
+                                We work with clinicians to deliver faster, more reliable insights for better patient outcomes.
+                            </div>
+
+                            <div class="space-small"></div>
+                            <a href="#technology" class="button-3">
+                                <div class="button-3_content-wrap">LEARN ABOUT OUR TECH</div>
+                                <div class="button-3_arrow-wrapper">
+                                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <path d="M5 12h14m-6 6l6-6m-6-6l6 6"/>
+                                    </svg>
+                                </div>
+                            </a>
+                        </div>
+                        <div class="hero-gif">
+                            <img src="image/Picture5.png" alt="About egrams" loading="lazy">
+                            <p class="image-caption">Built for clinicians: interoperable, secure, and clinically validated EEG AI platform.</p>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </div>
+
+        <!-- Story Section -->
         <div class="container-wrapper green" id="story">
             <div class="page-container">
                 <section class="our-story-section fade-in-section">
@@ -466,14 +508,14 @@
                                 <h2 class="heading-2 blue text-center">Take their word for it</h2>
                                 <p class="feedback-subtitle">Trusted by pioneering AI researchers and medical professionals around the world</p>
                             </div>
-                            <div class="feedback-header-link">
+                            <!-- <div class="feedback-header-link">
                                 <a href="https://whiteneuron.com/testimonials" class="feedback-link-button" target="_blank">
                                     <span>View All Reviews</span>
                                     <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                                         <path d="M7 17L17 7M17 7H7M17 7V17"/>
                                     </svg>
                                 </a>
-                            </div>
+                            </div> -->
                         </div>
                     </div>
                     
@@ -640,19 +682,52 @@
             <div class="uui-footer01_left-wrapper">
                 <h3 style="font-size: 1.5rem; margin-bottom: 1rem;">egrams</h3>
                 <p style="color: #999;">Advancing brain research through AI and neuroscience</p>
-                <div style="margin-top: 1.5rem;">
-                    <a href="mailto:contact@egrams.ai" style="color: #ff8c42; text-decoration: none;">contact@egrams.ai</a>
+                <div style="margin-top: 1rem; color: #bbb; line-height: 1.6;">
+                    <div>White Neuron</div>
+                    <div>DV8, Đìa Lão, LK333, Khu đô thị Mậu Lương, Hà Đông, Hà Nội, Việt Nam</div>
+                </div>
+                <div style="margin-top: 1.25rem; display: flex; gap: 1rem; flex-wrap: wrap; align-items:center;">
+                    <a href="mailto:contact@whiteneurons.com" style="color: #ff8c42; text-decoration: none;">contact@whiteneurons.com</a>
+                    <span style="opacity:.5;">|</span>
+                    <a href="tel:+84033980225" style="color: #ff8c42; text-decoration: none;">+84 033 980 225</a>
+                </div>
+                <div style="margin-top: 1rem; display:flex; gap:.75rem; align-items:center;">
+                    <a href="https://www.linkedin.com/company/whiteneuron" target="_blank" rel="noopener" aria-label="LinkedIn" style="color:#fff; opacity:.8;">
+                        <i class="fa-brands fa-linkedin"></i>
+                    </a>
+                    <a href="https://x.com/whiteneuron" target="_blank" rel="noopener" aria-label="X" style="color:#fff; opacity:.8;">
+                        <i class="fa-brands fa-x-twitter"></i>
+                    </a>
+                    <a href="https://github.com/tanhtm" target="_blank" rel="noopener" aria-label="GitHub" style="color:#fff; opacity:.8;">
+                        <i class="fa-brands fa-github"></i>
+                    </a>
                 </div>
             </div>
-            <!-- <div class="uui-footer01_menu-wrapper">
-                <div class="uui-footer01_link-list">
-                    <div class="uui-footer01_link-list-heading">About Us</div>
-                    <a href="#" class="uui-footer01_link">Home</a>
-                    <a href="#story" class="uui-footer01_link">Our Story</a>
-                    <a href="#technology" class="uui-footer01_link">Technology</a>
-                    <a href="#impact" class="uui-footer01_link">Impact</a>
-                </div>
-            </div> -->
+            <div class="uui-footer01_menu-wrapper">
+                    <div class="uui-footer01_link-list">
+                        <div class="uui-footer01_link-list-heading">Sections</div>
+                        <a href="#about" class="uui-footer01_link">About</a>
+                        <a href="#video-demo" class="uui-footer01_link">Video Demo</a>
+                        <a href="#story" class="uui-footer01_link">Our Story</a>
+                        <a href="#impact" class="uui-footer01_link">Impact</a>
+                        <a href="#technology" class="uui-footer01_link">Technology</a>
+                        <a href="#feedback" class="uui-footer01_link">Feedback</a>
+                    </div>
+                    <div class="uui-footer01_link-list">
+                        <div class="uui-footer01_link-list-heading">Resources</div>
+                        <a href="https://www.youtube.com/embed/CrtB-Tb-J_o?rel=0&modestbranding=1" class="uui-footer01_link">Video Demo</a>
+                        <!-- <a href="../docs/broucher-eeg.pdf" class="uui-footer01_link" target="_blank" rel="noopener">Product Brochure</a> -->
+                        <a href="https://whiteneuron.com" class="uui-footer01_link" target="_blank" rel="noopener">Testimonials</a>
+                        <a href="https://whiteneuron.com" class="uui-footer01_link" target="_blank" rel="noopener">Company Site</a>
+                    </div>
+                    <div class="uui-footer01_link-list">
+                        <div class="uui-footer01_link-list-heading">Contact</div>
+                        <a href="mailto:contact@whiteneurons.com" class="uui-footer01_link">Email Us</a>
+                        <a href="tel:+84033980225" class="uui-footer01_link">Call: +84 033 980 225</a>
+                        <a href="https://maps.app.goo.gl/g1hzcexctadfBBtR6" target="_blank" rel="noopener" class="uui-footer01_link">Find us on Maps</a>
+                        <a href="https://www.linkedin.com/company/whiteneuron" target="_blank" rel="noopener" class="uui-footer01_link">LinkedIn</a>
+                    </div>
+            </div>
         </div>
         <div class="uui-footer01_bottom-wrapper">
             © 2025 egrams White Neuron. All rights reserved.
