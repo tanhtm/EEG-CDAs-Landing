@@ -207,7 +207,7 @@ body {
     left: 0;
     width: 100%;
     height: 100vh;
-    pointer-events: all; /* Enable mouse interaction */
+    pointer-events: none; /* Không chặn tương tác của người dùng */
     z-index: 0;
     opacity: 0.12; /* Giảm từ 0.2 xuống 0.12 - mờ hơn */
     overflow: hidden;
@@ -1234,6 +1234,8 @@ footer {
     color: white;
     padding: 5rem clamp(1rem, 2.86vw, 3rem) 2rem;
     border-top: 1px solid rgba(0, 179, 199, 0.2);
+    position: relative;
+    z-index: 10;
 }
 
 .uui-footer01_top-wrapper {
@@ -1374,6 +1376,8 @@ footer {
     transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     position: relative;
     overflow: hidden;
+    max-width: 100%;
+    contain: layout paint;
 }
 
 .tech-step-header {
@@ -1386,6 +1390,11 @@ footer {
     border: none;
     transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     position: relative;
+    max-width: 100%;
+    overflow: hidden;
+    transform-origin: left center;
+    width: 100%;
+    box-sizing: border-box;
 }
 
 .tech-step:hover .tech-step-header {
@@ -1457,6 +1466,7 @@ footer {
 
 .tech-step-content {
     flex: 1;
+    min-width: 0; /* allow text to wrap inside flex container */
 }
 
 .tech-step-title {
@@ -1465,6 +1475,8 @@ footer {
     color: #2a2a2a;
     margin-bottom: 0.5rem;
     transition: color 0.3s ease;
+    overflow-wrap: anywhere;
+    word-break: break-word;
 }
 
 .tech-step.active .tech-step-title {
@@ -1478,6 +1490,8 @@ footer {
     line-height: 1.5;
     margin: 0;
     padding-left: 2.25rem;
+    overflow-wrap: anywhere;
+    word-break: break-word;
 }
 
 .tech-step-indicator {
@@ -1635,15 +1649,15 @@ footer {
     .tech-image-display {
         position: relative;
         top: auto;
-        min-height: 400px;
-        margin-top: 2rem;
+        min-height: 380px;
+        margin-top: 1.5rem;
     }
 }
 
 @media (max-width: 768px) {
     .tech-step:hover .tech-step-header,
     .tech-step.active .tech-step-header {
-        transform: translateX(0);
+        transform: none;
     }
 
     .step-number {
@@ -1651,7 +1665,90 @@ footer {
     }
 
     .tech-image-display {
-        min-height: 350px;
+        min-height: 300px;
+    }
+
+    /* shrink active border a bit to avoid visual clipping on tiny widths */
+    .tech-step.active .tech-step-header {
+        border-width: 1.5px;
+    }
+}
+
+/* Additional responsiveness for Our Technology to avoid overflow */
+@media (max-width: 1200px) {
+    #technology .feature-grid {
+        align-items: start;
+    }
+
+    .tech-image-display {
+        top: 90px;
+    }
+
+    /* Disable scaling to prevent overflow on medium screens */
+    .tech-step.active .tech-step-header {
+        transform: none;
+        box-shadow: 0 8px 28px rgba(0, 179, 199, 0.18);
+    }
+}
+
+@media (max-width: 576px) {
+    .tech-step-header {
+        padding: 0.85rem 0.9rem;
+        gap: 0.65rem;
+        width: 100%;
+        max-width: 100%;
+    }
+
+    .tech-step-desc {
+        padding-left: 1.5rem;
+    }
+
+    .tech-image-display {
+        border-width: 2px;
+        border-radius: 12px;
+        min-height: 240px;
+    }
+
+    .tech-step-icon {
+        width: 36px;
+        height: 36px;
+    }
+
+    .tech-step-title {
+        font-size: 1.05rem;
+    }
+
+    .tech-step-desc {
+        font-size: 0.92rem;
+    }
+
+    /* tuyệt đối không scale ở mobile nhỏ */
+    .tech-step.active .tech-step-header {
+        transform: none;
+        box-shadow: 0 6px 22px rgba(0, 179, 199, 0.14);
+    }
+}
+
+/* Very small screens fix (<=400px) */
+@media (max-width: 400px) {
+    .tech-step-header {
+        padding: 0.75rem 0.8rem;
+        gap: 0.5rem;
+    }
+
+    .tech-step-icon {
+        width: 32px;
+        height: 32px;
+    }
+
+    .tech-step-content {
+        min-width: 0;
+    }
+
+    .tech-step-title,
+    .tech-step-desc {
+        overflow-wrap: anywhere;
+        word-break: break-word;
     }
 }
 
@@ -1673,6 +1770,14 @@ footer {
     overflow: visible;
     padding: 0;
     margin: 0;
+}
+
+/* Ensure the whole technology section never creates horizontal overflow */
+.our-technology-section,
+#technology .feature-grid,
+#technology .hero-left-container {
+    max-width: 100%;
+    overflow-x: clip;
 }
 
 .our-technology-section .hero-gif:hover {
@@ -2442,14 +2547,12 @@ Back to Top Button - Vertical Layout
 }
 
 .feedback-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    grid-auto-rows: max-content;
-    gap: 40px 24px;
+    /* Masonry style columns for equal vertical spacing */
+    column-count: 3;
+    column-gap: 16px;
     max-width: 1200px;
     margin: 0 auto;
     padding: 0 20px;
-    align-items: start;
 }
 
 /* Layout 2 hàng x 3 cột */
@@ -2495,6 +2598,10 @@ Back to Top Button - Vertical Layout
     opacity: 0;
     transform: translateY(30px);
     animation: fadeInUp 0.6s ease forwards, gentleFloat 6s ease-in-out infinite;
+    display: inline-block; /* needed for column layout */
+    width: 100%;
+    margin: 0 0 16px; /* vertical spacing between cards */
+    break-inside: avoid; /* prevent column breaks inside cards */
 }
 
 @keyframes gentleFloat {
@@ -2769,10 +2876,8 @@ Back to Top Button - Vertical Layout
 /* Responsive Design */
 @media (max-width: 1024px) {
     .feedback-grid {
-        grid-template-columns: repeat(2, 1fr);
-        grid-auto-rows: max-content;
-        gap: 30px 20px;
-        align-items: start;
+        column-count: 2;
+        column-gap: 16px;
     }
     
     /* Layout 3 hàng x 2 cột cho tablet */
@@ -2828,11 +2933,12 @@ Back to Top Button - Vertical Layout
     }
     
     .feedback-grid {
-        grid-template-columns: 1fr;
-        grid-auto-rows: max-content;
-        gap: 20px;
+        column-count: 1;
+        column-gap: 12px;
         padding: 0 16px;
-        align-items: start;
+    }
+    .testimonial-card {
+        margin: 0 0 12px;
     }
     
     /* Layout 6 hàng x 1 cột cho mobile */

@@ -515,7 +515,7 @@ document.addEventListener('DOMContentLoaded', () => {
             // Mark user interaction and restart auto-play with 10s delay
             userInteracted = true;
             stopAutoPlay();
-            startAutoPlay(10000);
+            startAutoPlay(5000);
         });
         
         // Optional: Add hover effect
